@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Workflow Automation Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-top">
+        <div class="agent-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        </div>
+        <div>
+          <h2>AI Workflow Automation Agent</h2>
+          <p>Multi-step tasks &middot; Content generation &middot; Powered by Claude</p>
+        </div>
+      </div>
+      <div class="modes">
+        <button class="mode-btn active" onclick="setMode('email')">Write Email</button>
+        <button class="mode-btn" onclick="setMode('summary')">Summarize</button>
+        <button class="mode-btn" onclick="setMode('plan')">Action Plan</button>
+        <button class="mode-btn" onclick="setMode('report')">Draft Report</button>
+        <button class="mode-btn" onclick="setMode('custom')">Custom Task</button>
+      </div>
+    </div>
+
+    <!-- PIPELINE TRACKER -->
+    <div class="pipeline" id="pipeline">
+      <div class="step"><span class="step-badge" id="s1">Understand</span></div>
+      <span class="step-arrow">&#8250;</span>
+      <div class="step"><span class="step-badge" id="s2">Analyze</span></div>
+      <span class="step-arrow">&#8250;</span>
+      <div class="step"><span class="step-badge" id="s3">Generate</span></div>
+      <span class="step-arrow">&#8250;</span>
+      <div class="step"><span class="step-badge" id="s4">Refine</span></div>
+      <span class="step-arrow">&#8250;</span>
+      <div class="step"><span class="step-badge" id="s5">Deliver</span></div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="messages" id="messages">
+      <div class="msg">
+        <div class="avatar ai">AI</div>
+        <div class="bubble ai">
+          <div class="thinking">Agent ready</div>
+          Hello! I'm your AI Workflow Automation Agent. I handle multi-step tasks end-to-end — I'll analyze your request, plan the steps, generate content, and refine it before delivering the result.<br><br>
+          Select a mode above or describe your task below. Try one of the quick prompts to get started!
+        </div>
+      </div>
+    </div>
+
+    <!-- INPUT AREA -->
+    <div class="input-area">
+      <div class="quick-btns">
+        <button class="quick-btn" onclick="useQuick(this)">Write a follow-up email after a job interview</button>
+        <button class="quick-btn" onclick="useQuick(this)">Summarize my internship work into 3 bullet points</button>
+        <button class="quick-btn" onclick="useQuick(this)">Create an action plan to learn Hugging Face in 30 days</button>
+      </div>
+      <div class="input-row">
+        <textarea id="inp" placeholder="Describe your task..." rows="1"
+          onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="agent.js"></script>
+</body>
+</html>
